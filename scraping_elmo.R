@@ -29,7 +29,13 @@ get_links <- function(url){
   links <- html_attr(html_nodes(pages, 
                                 "h2.title.title-sm a"), 
                      "href")
+  
+  # agregamos esta línea en todas las funciones para cerra la
+  # conexión que abre la función read_html, que de haber muchas
+  # puede arrojar error
   rm(pages)
+  
+  # retorno los links
   return(links)
 }# fin get_links
 
