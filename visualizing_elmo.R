@@ -125,6 +125,7 @@ guaido_fail <- guaido_fail[-1,]
 # graficamos usando la librería ggplot
 ggplot(guaido_fail, aes(date, count)) +
   geom_line(size=2) +
+  scale_y_continuous(breaks = c(0:max(guaido_fail$count))) +
   labs(y="atención golpe Guaidó", x="") +
   theme_base() +
   theme(axis.text.x = element_text(angle = 90),
