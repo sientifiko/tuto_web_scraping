@@ -106,22 +106,24 @@ colnames(df_news) <- c("link", "tag","date")
 df_news$guaido <- str_count(df_news$tag, pattern = "Guaidó")
 
 # utilizamos la librería dplyr para crear una tabla más pequeña
-# solo con los datos que nos interesa, en este caso la fecha
-# y si hablan de Guaidó. Las agrupamos por fechas
-tbl <- df_news %>% 
+# solo con los datos que nos interesan, en este caso la fecha,
+# y si la nota habla de Guaidó. Las agrupamos por fechas
+guaido_fail <- df_news %>% 
   select(date, guaido) %>%
   group_by(date) %>%
-  summarize(count = sum(guaido, na.rm = T))
+  summarize(count = sum(guaido, na.rm = T)) # esto crea un campo que suma por 
+                                            # fechas, las veces que se habla de
+                                            # Guaidó
 
 # eliminamos la primera fila
-tbl <- tbl[-1,]
+guaido_fail <- guaido_fail[-1,]
 
 # descomentar para convertir en fecha, por si algo
 # llegara a fallar
-# tbl$date <- as.Date(tbl$date, format="%d-%m-%Y")
+# guaido_fail$date <- as.Date(tbl$date, format="%d-%m-%Y")
 
 # graficamos usando la librería ggplot
-ggplot(tbl, aes(date, count)) +
+ggplot(guaido_fail, aes(date, count)) +
   geom_line(size=2) +
   labs(y="atención golpe Guaidó", x="") +
   theme_base() +
