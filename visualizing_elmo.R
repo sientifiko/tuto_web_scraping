@@ -90,7 +90,7 @@ wordcloud(df$word, df$freq, min.freq= 1,
 ##=============== VISUALIZAR COMO SERIES DE TIEMPO ======================
 
 # las librerías
-library(ggplot2); library(dplyr); library(ggthemes)
+library(ggplot2); library(dplyr); library(ggthemes);library(stringr)
 
 
 # importamos nuestro dataset
